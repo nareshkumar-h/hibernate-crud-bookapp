@@ -1,7 +1,7 @@
 ## Implement DAO methods using Hibernate
 
 
-# Step 1: Create persistence.xml file ( resources/META-INF folder )
+## Step 1: Create persistence.xml file ( resources/META-INF folder )
 ```
 <persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -35,7 +35,7 @@
 </persistence>
 ```
 
-# Step 2: Create HibernateUtil 
+## Step 2: Create HibernateUtil 
 * Get EntityManagerFactory object by giving persistent unitName
 ```
 import javax.persistence.EntityManagerFactory;
@@ -60,9 +60,9 @@ public class HibernateUtil {
 }
 ```
 
-# Step 3: Write DAO methods using Hibernate APIs
+## Step 3: Write DAO methods using Hibernate APIs
 
-## Insert
+### Insert
 ```
 public void save(User user) {
 		EntityManagerFactory emf = HibernateUtil.getEntityManagerFactory();
@@ -76,23 +76,23 @@ public void save(User user) {
 	}
   ```
   
-  ## Update
+  ### Update
   ```
   em.merge(user);
   ```
   
-  ## Delete
+  ### Delete
   ```
   em.remove(user) (or)
   em.remove(em.contains(user) ? user : em.merge(user));
   ```
   
-  ## Select Queries ( which returns multiple rows )
+  ### Select Queries ( which returns multiple rows )
   ```
   List<User> userList = em.createQuery("select u from User u", User.class).getResultList();
   ```
   
-  ## Select Queries ( with parameters )
+  ### Select Queries ( with parameters )
   ```
   TypedQuery<User> query = em.createQuery("select u from User u where email =:email and password =:password", User.class);
 	query.setParameter("email", email);
@@ -100,7 +100,7 @@ public void save(User user) {
 	User user = query.getSingleResult();
   ```
   
-## Select Query ( search by Id )
+### Select Query ( search by Id )
 ```
 User user = em.find(User.class, id);
 ```
