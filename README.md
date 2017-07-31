@@ -100,3 +100,7 @@ public void save(User user) {
 	User user = query.getSingleResult();
   ```
   
+## Select Query ( search by Id )
+```
+User user = em.find(User.class, id);
+```
